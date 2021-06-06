@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detail studenta</title>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/normalize.css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" href="/css/skeleton.css" th:href="@{/css/skeleton.css}">
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+<main class="container">
+    <h1>Detail studenta</h1>
+    <table class="u-full-width">
+        <thead>
+        <tr>
+            <th>Jméno</th>
+            <th>Třída</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="jedenStudent: ${student}">
+            <td th:text="${jedenStudent.toString()}">Jméno</td>
+            <td><a th:href="@{/(id=${jedenStudent.trida.id})}" th:text="${jedenStudent.trida}"> Název třídy</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div><h5>Rodiče studenta</h5>
+        <table class="u-full-width">
+            <thead>
+            <tr>
+                <th>Jméno</th>
+                <th>E-mail</th>
+                <th>Telefon</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="jedenRodic: ${rodice}">
+                <td th:text="${jedenRodic.toString()}">Jméno</td>
+                <td th:text="${jedenRodic.email}">Email</td>
+                <td th:text="${jedenRodic.telefon}">telefon</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a href="/"><- Zpět na seznam tříd</a>
+    </div>
+</main>
+</body>
+</html>

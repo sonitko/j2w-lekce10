@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detail třídy</title>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/normalize.css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" href="/css/skeleton.css" th:href="@{/css/skeleton.css}">
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+<main class="container">
+    <h1>Detail třídy</h1>
+    <table class="u-full-width">
+        <thead>
+        <tr>
+            <th>Třída</th>
+            <th>Učitel</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="jednaTrida: ${trida}">
+            <td th:text="${jednaTrida.nazev}">Název třídy</td>
+            <td th:text="${jednaTrida.getTridniUcitel()}">Učitel</td>
+        </tr>
+        </tbody>
+    </table>
+    <div><h5>Seznam studentů</h5>
+        <div th:each="student: ${seznamStudentu}">
+            <a th:href="@{/student(id=${student.id})}" th:text="${student.toString()}"></a>
+        </div>
+
+        <a href="/"><- Zpět na seznam tříd</a>
+    </div>
+</main>
+</body>
+</html>
