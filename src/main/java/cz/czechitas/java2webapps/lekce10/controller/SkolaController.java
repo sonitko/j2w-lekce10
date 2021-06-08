@@ -26,14 +26,14 @@ public class SkolaController {
     public ModelAndView detailTridy(@PageableDefault(sort = {"prijmeni, jmeno"}) short id) {
         ModelAndView result = new ModelAndView("detailTrida");
         result.addObject("seznamStudentu", skolaService.seznamStudentuTridy(id, Pageable.unpaged()));
-        result.addObject("trida", skolaService.findTridaById(id, Pageable.unpaged()));
+        result.addObject("trida", skolaService.findTridaById(id));
         return result;
     }
 
     @GetMapping(path = "/student", params = "id")
     public ModelAndView detailStudenta(@PageableDefault(sort = {"prijmeni, jmeno"}) Integer id) {
         ModelAndView result = new ModelAndView("detailStudent");
-        result.addObject("student", skolaService.findStudentById(id, Pageable.unpaged()));
+        result.addObject("student", skolaService.findStudentById(id));
         result.addObject("rodice", skolaService.seznamRodicuStudenta(id, Pageable.unpaged()));
         return result;
     }

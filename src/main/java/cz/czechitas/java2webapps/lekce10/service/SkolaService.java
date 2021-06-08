@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkolaService {
@@ -35,20 +36,20 @@ public class SkolaService {
         return tridaRepository.findAll(Pageable.unpaged());
     }
 
-    public Page<Trida> findTridaById(short id, Pageable pageable) {
-        return tridaRepository.findById(id, Pageable.unpaged());
+    public Trida findTridaById(short id) {
+        return tridaRepository.findById(id).get();
     }
 
     public Page<Rodic> seznamRodicuStudenta(Integer id, Pageable pageable) {
-        return rodicRepository.findByDetiIdOrderByPrijmeni(id,Pageable.unpaged());
+        return rodicRepository.findByDetiIdOrderByPrijmeniAscJmenoAsc(id,Pageable.unpaged());
     }
 
     public Page<Student> seznamStudentuTridy(short id, Pageable pageable) {
-        return studentRepository.findStudentByTridaIdOrderByPrijmeni(id, Pageable.unpaged());
+        return studentRepository.findStudentiByTridaIdOrderByPrijmeniAscJmenoAsc(id, Pageable.unpaged());
     }
 
-    public Page<Student> findStudentById(Integer id, Pageable pageable) {
-        return studentRepository.findById(id, Pageable.unpaged());
+    public Student findStudentById(Integer id) {
+        return studentRepository.findById(id).get();
     }
 
 }
